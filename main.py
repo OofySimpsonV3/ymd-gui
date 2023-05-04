@@ -136,7 +136,7 @@ class App:
                         }],
                         'addmetadata': True,
                         'add-metadata': True,
-                        'outtmpl': outputDir + '/%(playlist_uploader)s ## %(playlist)s\%(title)s ## %(uploader)s ## %(id)s.%(ext)s',
+                        'outtmpl': outputDir + '/%(playlist_index)s-%(title)s.%(ext)s',
                     }
                     try:
                         with YoutubeDL(opts) as ydl:
@@ -173,7 +173,7 @@ class App:
                 opts = {
                     'ignoreerrors': True,
                     'abort_on_unavailable_fragments': True,
-                    'outtmpl': outputDir + '/%(playlist_uploader)s ## %(playlist)s\%(title)s ## %(uploader)s ## %(id)s.%(ext)s',
+                    'outtmpl': outputDir + '/%(playlist_index)s-%(title)s.%(ext)s',
                 }
                 try:
                     with YoutubeDL(opts) as ydl:
