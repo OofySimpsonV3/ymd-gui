@@ -157,7 +157,6 @@ class App:
 
                 opts = {
                     'outtmpl': outputDir + '/%(title)s-%(id)s.%(ext)s',
-                    'format': 'bestvideo/best'
                 }
                 try:
                     with YoutubeDL(opts) as ydl:
@@ -174,7 +173,6 @@ class App:
                 opts = {
                     'ignoreerrors': True,
                     'abort_on_unavailable_fragments': True,
-                    'format': 'bestvideo/best',
                     'outtmpl': outputDir + '/%(playlist_uploader)s ## %(playlist)s\%(title)s ## %(uploader)s ## %(id)s.%(ext)s',
                 }
                 try:
@@ -187,15 +185,15 @@ class App:
 
 
     def boxPlaylist_command(self):
-        print("command")
+        print("[LOG] Checkbox selected")
 
 
     def radioAudio_command(self):
-        print("command")
+        print("[LOG] Radio Button (Audio) Selected")
 
 
     def radioVideo_command(self):
-        print("command")
+        print("[LOG] Radio Button (Video) Selected")
 
 if __name__ == "__main__":
     root = tk.Tk()
