@@ -32,7 +32,7 @@ python main.py
 ### Windows Systems
 #### Pre-build Binary
 If you are a Windows user and would like to use YMD, you're simplest option would be to download one of the pre-built binaries.
-[The executable file for YMD can be downloaded here!](https://website-o-tea.tk/media/other/github/ymd-alpha-0-3-win/ymd-gui-alpha-0-3-win.zip)
+[The executable file for YMD can be downloaded here!](https://website-o-tea.tk/media/other/github/ymd-win/ymd-win.zip)
 
 Just download the ZIP file, extract it, and run `YMD.exe`.
 
