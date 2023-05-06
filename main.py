@@ -12,10 +12,10 @@ from pytube import YouTube
 class App:
     def __init__(self, root):
         #setting title
-        root.title("YMD for Unix (GUI)")
+        root.title("YMD-G Alpha 0.5 (UNIX Edition)")
         #setting window size
         width=462
-        height=124
+        height=135
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
@@ -39,12 +39,27 @@ class App:
         boxPlaylist["font"] = ft
         boxPlaylist["fg"] = "#333333"
         boxPlaylist["justify"] = "center"
+        boxPlaylist["anchor"] = "w"
         boxPlaylist["text"] = "Playlist (BETA)"
-        boxPlaylist.place(x=0,y=90,width=118,height=30)
+        boxPlaylist.place(x=5,y=90,width=118,height=20)
         boxPlaylist["offvalue"] = "0"
         boxPlaylist["onvalue"] = "1"
         boxPlaylist["command"] = self.boxPlaylist_command
         boxPlaylist["variable"] = varBox
+
+        global boxSearch
+        boxSearch=tk.Checkbutton(root)
+        ft = tkFont.Font(family='Times',size=10)
+        boxSearch["font"] = ft
+        boxSearch["fg"] = "#333333"
+        boxSearch["justify"] = "left"
+        boxSearch["anchor"] = "w"
+        boxSearch["text"] = "Search"
+        boxSearch.place(x=5,y=110,width=80,height=20)
+        boxSearch["offvalue"] = "0"
+        boxSearch["onvalue"] = "1"
+        boxSearch["command"] = self.boxSearch_command
+        boxSearch["variable"] = varSearch
 
         global txtUrls
         txtUrls=tk.Entry(root)
@@ -63,7 +78,7 @@ class App:
         radioAudio["fg"] = "#333333"
         radioAudio["justify"] = "center"
         radioAudio["text"] = "Audio (mp3 + metadata)"
-        radioAudio.place(x=190,y=90,width=177,height=31)
+        radioAudio.place(x=190,y=95,width=177,height=31)
         radioAudio["value"] = 1
         radioAudio["command"] = self.radioAudio_command
         radioAudio["variable"] = varRadio
@@ -75,7 +90,7 @@ class App:
         radioVideo["fg"] = "#333333"
         radioVideo["justify"] = "center"
         radioVideo["text"] = "Video"
-        radioVideo.place(x=370,y=90,width=86,height=30)
+        radioVideo.place(x=370,y=95,width=86,height=30)
         radioVideo["value"] = 0
         radioVideo["command"] = self.radioVideo_command
         radioVideo["variable"] = varRadio
@@ -95,7 +110,11 @@ class App:
                 if varBox.get() == 0:    # IF CHECKBOX IS NOT CHECKED
                     # DOWNLOAD URLS NORMALLY
                     print("[LOG] DOWNLOADING CONTENT FROM URLS")
-                    urls = txtUrls.get()
+
+                    if varSearch.get() == 1:
+                        urls = "ytsearch: " + txtUrls.get()
+                    else:
+                        urls = txtUrls.get().split(" ")
 
                     opts = {
                         'outtmpl': outputDir + '/%(title)s-%(id)s.%(ext)s',
@@ -121,7 +140,7 @@ class App:
                     # DOWNLOAD PLAYLIST
                     print("[LOG] DOWNLOADING PLAYLIST")
                     messagebox.askquestion(title="YMD", message=f"Downloading {txtUrls.get()} as a PLAYLIST! Is this correct?")
-                    urls = txtUrls.get()
+                    urls = txtUrls.get().split(" ")
                     opts = {
                         'ignoreerrors': True,
                         'abort_on_unavailable_fragments': True,
@@ -153,7 +172,11 @@ class App:
             if varBox.get() == 0:    # IF CHECKBOX IS NOT CHECKED
                 # DOWNLOAD URLS NORMALLY
                 print("[LOG] DOWNLOADING CONTENT FROM URLS")
-                urls = txtUrls.get()
+                if varSearch.get() == 1:
+                    urls = "ytsearch: " + txtUrls.get()
+                else:
+                    urls = txtUrls.get().split(" ")
+                    
 
                 opts = {
                     'outtmpl': outputDir + '/%(title)s-%(id)s.%(ext)s',
@@ -169,7 +192,7 @@ class App:
                 # DOWNLOAD PLAYLIST
                 print("[LOG] DOWNLOADING PLAYLIST")
                 messagebox.askquestion(title="YMD", message=f"Downloading {txtUrls.get()} as a PLAYLIST! Is this correct?")
-                urls = txtUrls.get()
+                urls = txtUrls.get().split(" ")
                 opts = {
                     'ignoreerrors': True,
                     'abort_on_unavailable_fragments': True,
@@ -195,9 +218,19 @@ class App:
     def radioVideo_command(self):
         print("[LOG] Radio Button (Video) Selected")
 
+    def boxSearch_command(self):
+        if varSearch.get() == 1:
+            varBox.set(0)
+            boxPlaylist["state"] = "disable"
+        else:
+            boxPlaylist["state"] = "normal"
+
 if __name__ == "__main__":
+    print("[LOG] Log has started!")
+    print("[LOG] You are using YMD-GUI Aplha 0.3 (UNIX Edition)! Report any errors to OofySimpsonV3 on github.")
     root = tk.Tk()
     varBox = tk.IntVar()
     varRadio = tk.IntVar()
+    varSearch = tk.IntVar()
     app = App(root)
     root.mainloop()
