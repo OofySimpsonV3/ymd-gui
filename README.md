@@ -36,6 +36,19 @@ If you are a Windows user and would like to use YMD, you're simplest option woul
 
 Just download the ZIP file, extract it, and run `YMD.exe`.
 
+#### Manual
+If you are wanting to run the python script without downloading the prebuilt-binary for windows (ymd.EXE), this is what you would want to do:
+First, make sure you have FFMPEG installed. FFMPEG can be a bit tricky to download, but there are many tutorials for downloading and installing FFMPEG. Make sure you install FFMPEG and have FFMPEG added to PATH.
+
+Once you have FFMPEG installed, make sure you have Python installed (obviously). Make sure you have Python 3.X downloaded (preferably Python 3.10 or 3.11).
+
+You can now run the `main.py` file. Simple double click on the file, or open it in CMD:
+```bash
+python main.py
+```
+
+Done! :D
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
