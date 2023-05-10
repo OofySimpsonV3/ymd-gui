@@ -22,7 +22,6 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-		s
         global btnDownload
         btnDownload=tk.Button(root)
         btnDownload["bg"] = "#e9e9ed"
