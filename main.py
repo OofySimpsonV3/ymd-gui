@@ -1,4 +1,4 @@
-# YMD ALPHA 0.3
+# YMD ALPHA 0.5
 
 import tkinter as tk
 import tkinter.font as tkFont
@@ -8,7 +8,6 @@ import os
 from yt_dlp import YoutubeDL
 import ffmpeg
 from pytube import YouTube
-import threading
 
 class App:
     def __init__(self, root):
@@ -22,6 +21,7 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
+
         global btnDownload
         btnDownload=tk.Button(root)
         btnDownload["bg"] = "#e9e9ed"
@@ -31,7 +31,7 @@ class App:
         btnDownload["justify"] = "center"
         btnDownload["text"] = "Download"
         btnDownload.place(x=10,y=50,width=444,height=37)
-        btnDownload["command"] = threading.Thread(target=self.btnDownload_command).start()
+        btnDownload["command"] = self.btnDownload_command
 
         global boxPlaylist
         boxPlaylist=tk.Checkbutton(root)
@@ -227,7 +227,7 @@ class App:
 
 if __name__ == "__main__":
     print("[LOG] Log has started!")
-    print("[LOG] You are using YMD-GUI Aplha 0.3 (UNIX Edition)! Report any errors to OofySimpsonV3 on github.")
+    print("[LOG] You are using YMD-GUI Aplha 0.5 (UNIX Edition)! Report any errors to OofySimpsonV3 on github.")
     root = tk.Tk()
     varBox = tk.IntVar()
     varRadio = tk.IntVar()
