@@ -8,6 +8,7 @@ import os
 from yt_dlp import YoutubeDL
 import ffmpeg
 from pytube import YouTube
+import threading
 
 class App:
     def __init__(self, root):
@@ -21,7 +22,7 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-
+		s
         global btnDownload
         btnDownload=tk.Button(root)
         btnDownload["bg"] = "#e9e9ed"
@@ -31,7 +32,7 @@ class App:
         btnDownload["justify"] = "center"
         btnDownload["text"] = "Download"
         btnDownload.place(x=10,y=50,width=444,height=37)
-        btnDownload["command"] = self.btnDownload_command
+        btnDownload["command"] = threading.Thread(target=self.btnDownload_command).start()
 
         global boxPlaylist
         boxPlaylist=tk.Checkbutton(root)
