@@ -8,12 +8,8 @@ from tkinter import filedialog
 import os
 from yt_dlp import YoutubeDL
 import ffmpeg
-from pytube import YouTube
 from threading import Thread
 from time import sleep
-
-global btnDisable
-btnDisable = False
 
 class App:
     def __init__(self, root):
