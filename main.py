@@ -14,7 +14,7 @@ from time import sleep
 class App:
     def __init__(self, root):
         # setting title
-        root.title("YMD-G Alpha 0.5 (UNIX Edition)")
+        root.title("YMD-G BETA 0.6 (UNIX Edition)")
         # setting window size
         width = 462
         height = 155
