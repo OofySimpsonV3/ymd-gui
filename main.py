@@ -115,7 +115,7 @@ class App:
         txtFile["fg"] = "#333333"
         txtFile["justify"] = "left"
         txtFile["text"] = "URLs (Seperate multiple URLs with spaces!)"
-        txtFile.place(x=10, y=170, width=441, height=33)
+        txtFile.place(x=10, y=175, width=441, height=33)
         txtFile.delete(0, tk.END)
         txtFile.insert(0, "%(title)s-%(id)s.%(ext)s")
         txtFile["state"] = 'disabled'
