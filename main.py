@@ -1,4 +1,4 @@
-# YMD BETA 0.6
+# YMD BETA 0.7
 # Github: OofySimpsonV3
 
 import tkinter as tk
