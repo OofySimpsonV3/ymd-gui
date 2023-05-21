@@ -11,6 +11,8 @@ import ffmpeg
 from threading import Thread
 from time import sleep
 
+# BANANA
+
 class App:
     def __init__(self, root):
         # setting title
