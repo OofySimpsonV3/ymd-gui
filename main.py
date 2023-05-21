@@ -102,7 +102,7 @@ class App:
         radioVideo["justify"] = "center"
         radioVideo["text"] = "Video"
         radioVideo.place(x=370, y=95, width=86, height=30)
-        radioVideo["value"] = 1
+        radioVideo["value"] = 0
         radioVideo["command"] = self.radioVideo_command
         radioVideo["variable"] = varRadio
         
@@ -114,7 +114,7 @@ class App:
         radioAudio["justify"] = "center"
         radioAudio["text"] = "Audio (mp3 + metadata)"
         radioAudio.place(x=190, y=95, width=177, height=31)
-        radioAudio["value"] = 0
+        radioAudio["value"] = 1
         radioAudio["command"] = self.radioAudio_command
         radioAudio["variable"] = varRadio
 
