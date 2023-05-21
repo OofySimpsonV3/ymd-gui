@@ -14,7 +14,7 @@ from time import sleep
 class App:
     def __init__(self, root):
         # setting title
-        root.title("YMD-G BETA 0.6 (UNIX Edition)")
+        root.title("YMD-G BETA 0.7 (UNIX Edition)")
         # setting window size
         width = 462
         height = 220
@@ -403,7 +403,7 @@ class App:
 if __name__ == "__main__":
     print("[LOG] Log has started!")
     print(
-        "[LOG] You are using YMD-GUI BETA 0.6 (UNIX Edition)! Report any errors to OofySimpsonV3 on github."
+        "[LOG] You are using YMD-GUI BETA 0.7 (UNIX Edition)! Report any errors to OofySimpsonV3 on github."
     )
 
     root = tk.Tk()
