@@ -1,6 +1,6 @@
 # Youtube Music Downloader GUI (BETA 0.6)
 
-![Screenshot of YMD](https://raw.githubusercontent.com/OofySimpsonV3/ymd-gui/main/screenshot.jpg)
+![Screenshot of YMD](https://raw.githubusercontent.com/OofySimpsonV3/ymd-gui/main/screenshot.png)
 
 Youtube Music Downloader GUI (YMD-GUI or YMDG) is a python program that uses the yt-dlp library for downloading Youtube media at high quality and speeds. The program is primarily made for Music, for it fetches metadata such as Artist, Title, Album, etc in MP3 format, but can also download Videos at high quality in WebM format.
 YMDG can mass download an infinite amount of URLs at once, and can also download playlists.
