@@ -17,7 +17,7 @@ class App:
         root.title("YMD-G BETA 0.6 (UNIX Edition)")
         # setting window size
         width = 462
-        height = 155
+        height = 220
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = "%dx%d+%d+%d" % (
@@ -39,6 +39,16 @@ class App:
         btnDownload["text"] = "Download"
         btnDownload.place(x=10, y=50, width=441, height=37)
         btnDownload["command"] = self.btnDownload_command
+        
+        global txtUrls
+        txtUrls = tk.Entry(root)
+        txtUrls["borderwidth"] = "1px"
+        ft = tkFont.Font(family="Times", size=10)
+        txtUrls["font"] = ft
+        txtUrls["fg"] = "#333333"
+        txtUrls["justify"] = "left"
+        txtUrls["text"] = ")"
+        txtUrls.place(x=10, y=10, width=441, height=33)
 
         global boxPlaylist
         boxPlaylist = tk.Checkbutton(root)
@@ -47,7 +57,7 @@ class App:
         boxPlaylist["fg"] = "#333333"
         boxPlaylist["justify"] = "center"
         boxPlaylist["anchor"] = "w"
-        boxPlaylist["text"] = "Playlist"
+        boxPlaylist["text"] = "Playlist Indexing"
         boxPlaylist.place(x=5, y=90, width=118, height=20)
         boxPlaylist["offvalue"] = "0"
         boxPlaylist["onvalue"] = "1"
@@ -81,16 +91,34 @@ class App:
         boxThumbnail["onvalue"] = "1"
         boxThumbnail["command"] = self.boxThumbnail_command
         boxThumbnail["variable"] = varThumbnail
-
-        global txtUrls
-        txtUrls = tk.Entry(root)
-        txtUrls["borderwidth"] = "1px"
+        
+        # TODO: Add CUSTOM FILE NAME option + text entry
+        global boxCustom
+        boxCustom = tk.Checkbutton(root)
         ft = tkFont.Font(family="Times", size=10)
-        txtUrls["font"] = ft
-        txtUrls["fg"] = "#333333"
-        txtUrls["justify"] = "left"
-        txtUrls["text"] = "URLs (Seperate multiple URLs with spaces!)"
-        txtUrls.place(x=10, y=10, width=441, height=33)
+        boxCustom["font"] = ft
+        boxCustom["fg"] = "#333333"
+        boxCustom["justify"] = "left"
+        boxCustom["anchor"] = "w"
+        boxCustom["text"] = "Custom File Name / Formatting"
+        boxCustom.place(x=5, y=150, width=200, height=20)
+        boxCustom["offvalue"] = "0"
+        boxCustom["onvalue"] = "1"
+        boxCustom["command"] = self.boxCustom_command
+        boxCustom["variable"] = varCustom
+        
+        global txtFile
+        txtFile = tk.Entry(root)
+        txtFile["borderwidth"] = "1px"
+        ft = tkFont.Font(family="Times", size=10)
+        txtFile["font"] = ft
+        txtFile["fg"] = "#333333"
+        txtFile["justify"] = "left"
+        txtFile["text"] = "URLs (Seperate multiple URLs with spaces!)"
+        txtFile.place(x=10, y=170, width=441, height=33)
+        txtFile.delete(0, tk.END)
+        txtFile.insert(0, "%(title)s-%(id)s.%(ext)s")
+        txtFile["state"] = 'disabled'
 
         global radioVideo
         radioVideo = tk.Radiobutton(root)
@@ -131,7 +159,7 @@ class App:
         # IF THUMBNAIL OPTION IS SELECTED
         if varThumbnail.get() == 1:
             opts = {
-                "outtmpl": outputDir + "/%(title)s-%(id)s.%(ext)s",
+                "outtmpl": outputDir + f"/{txtFile.get()}",
                 "embed-thumbnail": True,
                 "format": "bestaudio/best",
                 "writethumbnail": True,
@@ -152,7 +180,7 @@ class App:
             }
         else:
             opts = {
-                "outtmpl": outputDir + "/%(title)s-%(id)s.%(ext)s",
+                "outtmpl": outputDir + f"/{txtFile.get()}",
                 "embed-thumbnail": True,
                 "format": "bestaudio/best",
                 "postprocessors": [
@@ -212,7 +240,7 @@ class App:
             ],
             "addmetadata": True,
             "add-metadata": True,
-            "outtmpl": outputDir + "/%(playlist_index)s-%(title)s.%(ext)s",
+            "outtmpl": outputDir + f"/{txtFile.get()}",
         }
         try:
             with YoutubeDL(opts) as ydl:
@@ -242,7 +270,7 @@ class App:
             urls = txtUrls.get().split(" ")
 
         opts = {
-            "outtmpl": outputDir + "/%(title)s-%(id)s.%(ext)s",
+            "outtmpl": outputDir + f"/{txtFile.get()}",
         }
 
         try:
@@ -274,7 +302,7 @@ class App:
         opts = {
             "ignoreerrors": True,
             "abort_on_unavailable_fragments": True,
-            "outtmpl": outputDir + "/%(playlist_index)s-%(title)s.%(ext)s",
+            "outtmpl": outputDir + f"/{txtFile.get()}",
         }
         try:
             with YoutubeDL(opts) as ydl:
@@ -313,9 +341,27 @@ class App:
 
     def boxPlaylist_command(self):
         if varBox.get() == 1:
-            print("[LOG] Playlist = True")
+            if varCustom.get() == 0:
+                print("[LOG] Playlist = True")
+                txtFile["state"] = 'normal'
+                txtFile.delete(0, tk.END)
+                txtFile.insert(0, "%(playlist_index)s-%(title)s.%(ext)s")
+                txtFile["state"] = 'disabled'
+            else:
+                print("[LOG] Playlist = True")
+                txtFile.delete(0, tk.END)
+                txtFile.insert(0, "%(playlist_index)s-%(title)s.%(ext)s")
         else:
-            print("[LOG] Playlist = False")
+            if varCustom.get() == 0:
+                print("[LOG] Playlist = True")
+                txtFile["state"] = 'normal'
+                txtFile.delete(0, tk.END)
+                txtFile.insert(0, "%(title)s-%(id)s.%(ext)s")
+                txtFile["state"] = 'disabled'
+            else:
+                print("[LOG] Playlist = True")
+                txtFile.delete(0, tk.END)
+                txtFile.insert(0, "%(title)s-%(id)s.%(ext)s")
 
     def radioAudio_command(self):
         print("[LOG] Radio Button (Audio) Selected")
@@ -337,6 +383,21 @@ class App:
             print("[LOG] Thumbnail = True")
         else:
             print("[LOG] Thumbnail = False")
+            
+    def boxCustom_command(self):
+        if varCustom.get() == 1:
+            print("[LOG] Custom Filename = True")
+            txtFile["state"] = 'normal'
+        else:
+            print("[LOG] Custom Filename = False")
+            if varBox.get() == 0:
+                txtFile.delete(0, tk.END)
+                txtFile.insert(0, "%(title)s-%(id)s.%(ext)s")
+                txtFile["state"] = 'disabled'
+            else:
+                txtFile.delete(0, tk.END)
+                txtFile.insert(0, "%(playlist_index)s-%(title)s.%(ext)s")
+                txtFile["state"] = 'disabled'
 
 
 if __name__ == "__main__":
@@ -350,5 +411,6 @@ if __name__ == "__main__":
     varRadio = tk.IntVar()
     varSearch = tk.IntVar()
     varThumbnail = tk.IntVar(value=1)
+    varCustom = tk.IntVar()
     app = App(root)
     root.mainloop()
