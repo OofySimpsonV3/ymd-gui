@@ -1,4 +1,4 @@
-# Youtube Music Downloader GUI (BETA 0.6)
+# Youtube Music Downloader GUI (BETA 0.7)
 
 ![Screenshot of YMD](https://raw.githubusercontent.com/OofySimpsonV3/ymd-gui/main/screenshot.png)
 
