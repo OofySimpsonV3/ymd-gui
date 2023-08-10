@@ -1,7 +1,8 @@
-# YMD BETA 0.7
+# YMD BETA 0.8
 # Github: OofySimpsonV3
 
 import tkinter as tk
+from tkinter import ttk
 import tkinter.font as tkFont
 from tkinter import messagebox
 from tkinter import filedialog
@@ -14,7 +15,7 @@ from time import sleep
 class App:
     def __init__(self, root):
         # setting title
-        root.title("YMD-G BETA 0.7 (UNIX Edition)")
+        root.title("YMD-G BETA 0.8 (UNIX Edition)")
         # setting window size
         width = 462
         height = 220
@@ -30,33 +31,18 @@ class App:
         root.resizable(width=False, height=False)
 
         global btnDownload
-        btnDownload = tk.Button(root)
-        btnDownload["bg"] = "#e9e9ed"
-        ft = tkFont.Font(family="Times", size=10)
-        btnDownload["font"] = ft
-        btnDownload["fg"] = "#000000"
-        btnDownload["justify"] = "center"
+        btnDownload = ttk.Button(root)
         btnDownload["text"] = "Download"
         btnDownload.place(x=10, y=50, width=441, height=37)
         btnDownload["command"] = self.btnDownload_command
         
         global txtUrls
-        txtUrls = tk.Entry(root)
-        txtUrls["borderwidth"] = "1px"
-        ft = tkFont.Font(family="Times", size=10)
-        txtUrls["font"] = ft
-        txtUrls["fg"] = "#333333"
-        txtUrls["justify"] = "left"
+        txtUrls = ttk.Entry(root)
         txtUrls["text"] = ")"
         txtUrls.place(x=10, y=10, width=441, height=33)
 
         global boxPlaylist
-        boxPlaylist = tk.Checkbutton(root)
-        ft = tkFont.Font(family="Times", size=10)
-        boxPlaylist["font"] = ft
-        boxPlaylist["fg"] = "#333333"
-        boxPlaylist["justify"] = "center"
-        boxPlaylist["anchor"] = "w"
+        boxPlaylist = ttk.Checkbutton(root)
         boxPlaylist["text"] = "Playlist Indexing"
         boxPlaylist.place(x=5, y=90, width=118, height=20)
         boxPlaylist["offvalue"] = "0"
@@ -65,12 +51,7 @@ class App:
         boxPlaylist["variable"] = varBox
 
         global boxSearch
-        boxSearch = tk.Checkbutton(root)
-        ft = tkFont.Font(family="Times", size=10)
-        boxSearch["font"] = ft
-        boxSearch["fg"] = "#333333"
-        boxSearch["justify"] = "left"
-        boxSearch["anchor"] = "w"
+        boxSearch = ttk.Checkbutton(root)
         boxSearch["text"] = "Search"
         boxSearch.place(x=5, y=110, width=80, height=20)
         boxSearch["offvalue"] = "0"
@@ -79,12 +60,7 @@ class App:
         boxSearch["variable"] = varSearch
 
         global boxThumbnail
-        boxThumbnail = tk.Checkbutton(root)
-        ft = tkFont.Font(family="Times", size=10)
-        boxThumbnail["font"] = ft
-        boxThumbnail["fg"] = "#333333"
-        boxThumbnail["justify"] = "left"
-        boxThumbnail["anchor"] = "w"
+        boxThumbnail = ttk.Checkbutton(root)
         boxThumbnail["text"] = "Add thumbnail to metadata"
         boxThumbnail.place(x=5, y=130, width=200, height=20)
         boxThumbnail["offvalue"] = "0"
@@ -94,12 +70,7 @@ class App:
         
         # TODO: Add CUSTOM FILE NAME option + text entry
         global boxCustom
-        boxCustom = tk.Checkbutton(root)
-        ft = tkFont.Font(family="Times", size=10)
-        boxCustom["font"] = ft
-        boxCustom["fg"] = "#333333"
-        boxCustom["justify"] = "left"
-        boxCustom["anchor"] = "w"
+        boxCustom = ttk.Checkbutton(root)
         boxCustom["text"] = "Custom File Name / Formatting"
         boxCustom.place(x=5, y=150, width=200, height=20)
         boxCustom["offvalue"] = "0"
@@ -108,12 +79,7 @@ class App:
         boxCustom["variable"] = varCustom
         
         global txtFile
-        txtFile = tk.Entry(root)
-        txtFile["borderwidth"] = "1px"
-        ft = tkFont.Font(family="Times", size=10)
-        txtFile["font"] = ft
-        txtFile["fg"] = "#333333"
-        txtFile["justify"] = "left"
+        txtFile = ttk.Entry(root)
         txtFile["text"] = "URLs (Seperate multiple URLs with spaces!)"
         txtFile.place(x=10, y=175, width=441, height=33)
         txtFile.delete(0, tk.END)
@@ -121,11 +87,7 @@ class App:
         txtFile["state"] = 'disabled'
 
         global radioVideo
-        radioVideo = tk.Radiobutton(root)
-        ft = tkFont.Font(family="Times", size=10)
-        radioVideo["font"] = ft
-        radioVideo["fg"] = "#333333"
-        radioVideo["justify"] = "center"
+        radioVideo = ttk.Radiobutton(root)
         radioVideo["text"] = "Video"
         radioVideo.place(x=370, y=95, width=86, height=30)
         radioVideo["value"] = 0
@@ -133,11 +95,7 @@ class App:
         radioVideo["variable"] = varRadio
         
         global radioAudio
-        radioAudio = tk.Radiobutton(root)
-        ft = tkFont.Font(family="Times", size=10)
-        radioAudio["font"] = ft
-        radioAudio["fg"] = "#333333"
-        radioAudio["justify"] = "center"
+        radioAudio = ttk.Radiobutton(root)
         radioAudio["text"] = "Audio (mp3 + metadata)"
         radioAudio.place(x=190, y=95, width=177, height=31)
         radioAudio["value"] = 1
@@ -402,9 +360,7 @@ class App:
 
 if __name__ == "__main__":
     print("[LOG] Log has started!")
-    print(
-        "[LOG] You are using YMD-GUI BETA 0.7 (UNIX Edition)! Report any errors to OofySimpsonV3 on github."
-    )
+    print("[LOG] You are using YMD-GUI BETA 0.8 (UNIX Edition)! Report any errors to OofySimpsonV3 on github.")
 
     root = tk.Tk()
     varBox = tk.IntVar()
@@ -413,4 +369,11 @@ if __name__ == "__main__":
     varThumbnail = tk.IntVar(value=1)
     varCustom = tk.IntVar()
     app = App(root)
+
+    try:
+        style = ttk.Style()
+        style.theme_use('xpnative')
+    except:
+        pass # This theme may not be present on UNIX systems
+
     root.mainloop()
