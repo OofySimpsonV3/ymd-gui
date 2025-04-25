@@ -1,4 +1,10 @@
-# Youtube Music Downloader GUI (BETA 0.8)
+# Youtube Music Downloader GUI (BETA 0.8) *[__DEPRECATED__]*
+
+*This project has been (kindly) abandoned. As long as dependencies haven't received major updates, continuing use via the `main.py` should still work quite well.*
+
+*Please don't use the BINARIES for this project, as these will now be broken.*
+
+*I do not condone the act of pirating, and this software was developed for the purpose of "sampling"! ;)* 
 
 ![Screenshot of YMD](https://raw.githubusercontent.com/OofySimpsonV3/ymd-gui/main/screenshot.png)
 
@@ -7,7 +13,7 @@ YMDG can mass download an infinite amount of URLs at once, and can also download
 
 ## Installation
 ### Linux / Unix Systems:
-First, clone the YMDG git repos.
+First, clone the YMDG git repo.
 
 ```bash
 git clone https://github.com/OofySimpsonV3/ymd-gui
