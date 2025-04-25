@@ -4,7 +4,7 @@
 
 *Please don't use the BINARIES for this project, as these will now be broken.*
 
-*I do not condone the act of pirating, and this software was developed for the purpose of "sampling"! ;)* 
+*I do not condone any acts of piracy, please only download your own peices, or use this software for troubleshooting! ;)* 
 
 ![Screenshot of YMD](https://raw.githubusercontent.com/OofySimpsonV3/ymd-gui/main/screenshot.png)
 
